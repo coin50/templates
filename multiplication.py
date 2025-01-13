@@ -1,5 +1,5 @@
 MOD = 0x3b800001
-W = [31]
+W = [2200]
 for _ in range(22): W.append( W[-1]**2%MOD )
 def dft(poly,b):
     n = 1<<b
