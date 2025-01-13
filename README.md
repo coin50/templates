@@ -1,0 +1,1 @@
+This is some template code, optimized for being short, rather than for runtime.
