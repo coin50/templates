@@ -22,7 +22,17 @@ def intersect(L1,L2):
 	A,B = L1; C,D = L2
 	k = ((C-A)^(D-C)) / ((B-A)^(D-C))
 	return A + (B-A)*k
-
+def inside(P,poly):
+	Px = P + Point(1,0)
+	S = 0
+	for i in range(n := len(poly)):
+		seg = (poly[i],poly[(i+1)%n])
+		I = intersect( (P,Px),seg )
+		if I and onseg(I,seg) and not onseg( P,(I,Px) ):
+			if (I-seg[0]).dis2() < EPS and seg[1].y < I.y: continue
+			if (I-seg[1]).dis2() < EPS and seg[0].y < I.y: continue
+			S ^= 1
+	return S
 def convex_hull(pts):
 	if not pts: return []
 	if all( (p-pts[0]).dis2() < EPS for p in pts ): return [pts[0]]
