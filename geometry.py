@@ -20,6 +20,7 @@ def onseg(P,S):
 	return abs( (A-P)^(B-P) ) < EPS and (A-P)@(B-P) < EPS
 def intersect(L1,L2):
 	A,B = L1; C,D = L2
+	if abs((B-A)^(D-C)) < EPS: return 0
 	k = ((C-A)^(D-C)) / ((B-A)^(D-C))
 	return A + (B-A)*k
 def inside(P,poly):
