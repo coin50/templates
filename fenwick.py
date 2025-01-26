@@ -20,10 +20,10 @@ def lower_bound(target):
         jump >>= 1
     return i+1
 
-"""
+
 update(6,1)
+update(24,1)
 update(24,1)
 update(19,1)
 for j in [0,1,2,3,4]:
     print( j, lower_bound(j) )
-"""
