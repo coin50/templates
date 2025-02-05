@@ -1,20 +1,23 @@
 n = 100
-seg = [0]*(2*n)
+def f(a,b):
+    return max(a,b)
+default = 0
+seg = [default]*(2*n)
+
 def update(i,x):
-    seg[n+i] = x
-    i = (n+i)//2
+    seg[i+n] = x
+    i = (i+n)//2
     while i:
-        seg[i] = max(seg[2*i],seg[2*i+1])
+        seg[i] = f(seg[2*i],seg[2*i+1])
         i >>= 1
 def rmq(l,r):
     l += n; r += n
-    m = 0
+    m1 = m2 = default
     while l < r:
-        #if l&1: m = max(m,seg[l])
-        #if r&1: m = max(m,seg[r-1])
-        m = max(m,seg[l],seg[r-1])
+        if l&1: m1 = f(m1,seg[l])
+        if r&1: m2 = f(seg[r-1],m2)
         l = (l+1)//2; r = r//2
-    return m
+    return f(m1,m2)
 
 """
 update(67,3)
