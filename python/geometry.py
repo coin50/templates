@@ -1,14 +1,16 @@
 EPS = 1e-8
 class Point:
-	def __init__(self,x,y): self.x = x; self.y = y;
-	def __add__(self,P): 	return Point(self.x+P.x, self.y+P.y)
-	def __sub__(self,P): 	return Point(self.x-P.x, self.y-P.y)
-	def __mul__(self,k): 	return Point(self.x*k, self.y*k)
-	def __matmul__(self,P): return self.x*P.x + self.y*P.y
-	def __xor__(self,P): 	return self.x*P.y - self.y*P.x
-	def __repr__(self): 	return f"({self.x}, {self.y})"
-	def dis2(self): 		return self.x**2 + self.y**2
-	def unit(self):			return self * (self.dis2()**-0.5)
+    def __init__(self,x,y): self.x = x; self.y = y;
+    def __add__(self,P): 	return Point(self.x+P.x, self.y+P.y)
+    def __sub__(self,P): 	return Point(self.x-P.x, self.y-P.y)
+    def __mul__(self,k): 	return Point(self.x*k, self.y*k)
+    def __matmul__(self,P): return self.x*P.x + self.y*P.y
+    def __xor__(self,P): 	return self.x*P.y - self.y*P.x
+    def __repr__(self): 	return f"({self.x}, {self.y})"
+    def perp(self):			return Point(self.y,-self.x)
+    def dis2(self): 		return self.x**2 + self.y**2
+    def mag(self):			return self.dis2() ** 0.5
+    def unit(self):			return self * (self.dis2()**-0.5)
 
 def area(pts):
 	n = len(pts)
@@ -23,6 +25,9 @@ def intersect(L1,L2):
 	if abs((B-A)^(D-C)) < EPS: return 0
 	k = ((C-A)^(D-C)) / ((B-A)^(D-C))
 	return A + (B-A)*k
+def project(P,L1):
+    A,B = L1
+    return intersect(L1, (P,P + (A-B).perp()))
 def inside(P,poly):
 	Px = P + Point(1,0)
 	S = 0

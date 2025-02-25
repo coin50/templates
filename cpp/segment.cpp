@@ -4,7 +4,7 @@ T f(T a, T b){ return min(a,b); }
 
 int N;
 const int MAX = 200000;
-T seg[2*MAX]= {def};
+T seg[2*MAX]; //set to default
 void update(int i, T v){
     seg[i += N] = v;
     while(i /= 2) seg[i] = f(seg[2*i],seg[2*i+1]);

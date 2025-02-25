@@ -1,6 +1,5 @@
 n = 100
-def f(a,b):
-    return max(a,b)
+def f(a,b): return max(a,b)
 default = 0
 seg = [default]*(2*n)
 
@@ -9,7 +8,7 @@ def update(i,x):
     i = (i+n)//2
     while i:
         seg[i] = f(seg[2*i],seg[2*i+1])
-        i >>= 1
+        i //= 2
 def rmq(l,r):
     l += n; r += n
     m1 = m2 = default
