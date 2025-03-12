@@ -20,7 +20,7 @@ T query(int l, int r){
     return f(m1,m2);
 }
 
-"""
+/*
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
@@ -37,4 +37,4 @@ int main(){
         }
     }
 }
-"""
+*/

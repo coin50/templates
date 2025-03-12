@@ -5,8 +5,8 @@ ll p0w(ll x,ll e){
     ll acc = x;
     ll p = 1;
     while(e){
-        if(e&1) p=p*acc%MOD;
-        acc=acc*acc%MOD;
+        if(e&1) p = p*acc%MOD;
+        acc = acc*acc%MOD;
         e >>= 1;
     }
     return p;
