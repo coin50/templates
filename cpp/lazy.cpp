@@ -56,7 +56,7 @@ T query( int l, int r ){ //range sum on [l,r)
     T m1 = defT, m2 = defT;
     while( l < r ){
         if(l&1) m1 = f(m1,seg[l++]);
-        if(r&1) m2 = f(m2,seg[--r]);
+        if(r&1) m2 = f(seg[--r],m2);
         l /= 2, r /= 2;
     }
     return f(m1,m2);
