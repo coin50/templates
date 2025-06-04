@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 using T = int;
 const T defT = 0;
 
