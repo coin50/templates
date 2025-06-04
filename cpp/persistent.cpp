@@ -1,18 +1,20 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int def = 0;
-int f(int a, int b){ return a+b; }
+using T = int;
+const T defT = 0;
+
+T f(T a, T b){ return a+b; }
 struct Node{
-    int val;
+    T val;
     Node* lc; Node* rc;
-    Node( int v ): val(v) {}
+    Node( T v ): val(v) {}
     Node( Node* left, Node* right ): val(f(left->val,right->val)), 
         lc(left), rc(right) {}
 };
 
 Node* build( int l, int r ){
-    if( r-l == 1 ) return new Node(def);
+    if( r-l == 1 ) return new Node(defT);
     int m = (l+r)/2;
     return new Node(build(l,m),build(m,r));
 }
@@ -24,7 +26,7 @@ Node* update( Node* root, int v, int i, int l, int r ){
         : new Node( root->lc, update( root->rc, v,i,m,r) );
 }
 int query( Node* root, int ql, int qr, int l, int r ){
-    if( qr <= l or r <= ql ) return def;
+    if( qr <= l or r <= ql ) return defT;
     if( ql <= l and r <= qr ) return root->val;
     int m = (l+r)/2;
     return f(
