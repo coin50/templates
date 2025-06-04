@@ -1,76 +1,41 @@
 using T = int;
 const T defT = 0;
-
 T f(T a, T b){ return a+b; }
+
 struct Node{
     T val;
-    Node* lc; Node* rc;
-    Node( T v ): val(v) {}
-    Node( Node* left, Node* right ): val(f(left->val,right->val)), 
-        lc(left), rc(right) {}
+    int lc; int rc;
 };
+vector<Node> pool;
 
-Node* build( int l, int r ){
-    if( r-l == 1 ) return new Node(defT);
-    int m = (l+r)/2;
-    return new Node(build(l,m),build(m,r));
+int make( T v ){
+    int k = pool.size();
+    pool.emplace_back( Node{v,-1,-1} );
+    return k;
 }
-Node* update( Node* root, int v, int i, int l, int r ){
-    if( r-l == 1 ) return new Node(root->val + v);
+int make( int lc, int rc ){
+    int k = pool.size(); 
+    pool.emplace_back( Node{f(pool[lc].val,pool[rc].val),lc,rc} );
+    return k;
+}
+int init( int l, int r ){
+    if( r-l == 1 ) return make(defT);
+    int m = (l+r)/2;
+    return make(init(l,m),init(m,r));
+}
+int update( int root, T v, int i, int l, int r ){
+    if( r-l == 1 ) return make( f(pool[root].val,v) );
     int m = (l+r)/2;
     return i < m
-        ? new Node( update( root->lc, v,i,l,m ), root->rc )
-        : new Node( root->lc, update( root->rc, v,i,m,r) );
+        ? make( update( pool[root].lc, v,i,l,m ), pool[root].rc )
+        : make( pool[root].lc, update( pool[root].rc, v,i,m,r) );
 }
-int query( Node* root, int ql, int qr, int l, int r ){
+int query( int root, int ql, int qr, int l, int r ){
     if( qr <= l or r <= ql ) return defT;
-    if( ql <= l and r <= qr ) return root->val;
+    if( ql <= l and r <= qr ) return pool[root].val;
     int m = (l+r)/2;
     return f(
-        query( root->lc, ql,qr,l,m ),
-        query( root->rc, ql,qr,m,r )
+        query( pool[root].lc, ql,qr,l,m ),
+        query( pool[root].rc, ql,qr,m,r )
     );
 }
-
-/*
-//find Kth smallest number in a[L:R]
-int main(){
-    int n,q; cin >> n >> q;
-    vector<int> a(n);
-    for( int& x: a ) cin >> x;
-
-    vector<int> b = a;
-    sort(b.begin(),b.end());
-    map<int,int> comp;
-    for( int i = 0; i < n; i++ ) comp[b[i]] = i;
-    
-    for( int i = 0; i < n; i++ ) a[i] = comp[a[i]];
-
-    vector<Node*> roots(n+1);
-    roots[0] = build(0,n);
-    for( int i = 0; i < n; i++ )
-        roots[i+1] = update( roots[i],1,a[i],0,n );
-
-    while(q--){
-        int l,r,k; cin >> l >> r >> k;
-
-        Node *left = roots[l], *right = roots[r];
-        int L = 0, R = n;
-        int S = 0;
-        while( R-L > 1 ){
-            int M = (L+R)/2;
-            int leftside = (right->lc->val) - (left->lc->val);
-            if( S + leftside <= k ){
-                S += leftside;
-                right = right->rc;
-                left = left->rc;
-                L = M;
-            } else {
-                right = right->lc;
-                left = left->lc;
-                R = M;
-            }
-        }
-        cout << b[L] << endl;
-    }
-}*/
