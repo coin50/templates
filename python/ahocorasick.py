@@ -1,14 +1,14 @@
 trie = [[0]*26]
 
 def insert(s):
-    cur = 0
-    for c in s:
-        x = ord(c) - ord('A')
-        if not trie[cur][x]:
-            trie[cur][x] = len(trie)
-            trie.append( [0]*26 )
-        cur = trie[cur][x]
-    return cur
+	cur = 0
+	for c in s:
+		x = ord(c) - ord('A')
+		if not trie[cur][x]:
+			trie[cur][x] = len(trie)
+			trie.append( [0]*26 )
+		cur = trie[cur][x]
+	return cur
 
 #insert all the strings here first
 
@@ -30,5 +30,5 @@ for i in range(len(trie)):
  
 go = [[0]*26 for _ in range(len(trie))]
 for c in queue:
-    for x in range(26):
-        go[c][x] = trie[c][x] if trie[c][x] else go[fail[c]][x]
+	for x in range(26):
+		go[c][x] = trie[c][x] if trie[c][x] else go[fail[c]][x]
