@@ -27,6 +27,7 @@ for i in range(len(trie)):
 				break
 			p = fail[p]
 		queue.append( trie[c][x] )
+fail[0] = 0
  
 go = [[0]*26 for _ in range(len(trie))]
 for c in queue:
