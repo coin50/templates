@@ -1,4 +1,4 @@
-// untested, not my template
+// untested, not my implementation
 const int MAXN = 1e5, MAXM = 1e6;
 struct EdgeList{
         int sz, begin[MAXN], dest[MAXM], next[MAXM]; ll flow[MAXM];
