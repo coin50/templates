@@ -3,7 +3,7 @@ ll p0w(ll x,ll e){
 	ll p = 1;
 	while(e){
 		if(e&1) p = p*x%MOD;
-		x = x*acc%MOD;
+		x = x*x%MOD;
 		e /= 2;
 	}
 	return p;
