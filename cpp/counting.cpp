@@ -1,10 +1,9 @@
 const ll MOD = 998244353;
 ll p0w(ll x,ll e){
 	ll p = 1;
-	ll acc = x;
 	while(e){
-		if(e&1) p = p*acc%MOD;
-		acc = acc*acc%MOD;
+		if(e&1) p = p*x%MOD;
+		x = x*acc%MOD;
 		e /= 2;
 	}
 	return p;
