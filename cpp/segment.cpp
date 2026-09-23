@@ -32,4 +32,3 @@ struct Seg{
                 return f(ml,mr);
         }
 };
-*/
