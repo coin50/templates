@@ -21,11 +21,9 @@ for i in range(len(trie)):
 		if not trie[c][x]: continue
  
 		p = fail[c]
-		while p > -1:
-			if trie[p][x]:
-				fail[trie[c][x]] = trie[p][x]
-				break
-			p = fail[p]
+		while p > -1 and not trie[p][x]: p = fail[p]
+		fail[trie[c][x]] = trie[p][x] if p > -1 else 0
+
 		queue.append( trie[c][x] )
 fail[0] = 0
  
