@@ -16,6 +16,7 @@ int main(){
         uniform_real_distribution<> dist(0,1);
         double r = dist(rng);
 
+        
         //bits
         int x,y;
         x = __builtin_ctz(y);
@@ -26,18 +27,20 @@ int main(){
         b.set(); b.reset(); b.flip();
         b.count(); b.any(); b.all(); b.none();
 
-        //how to do strings, __init128, next_permutation, bitset
         
-
         //input
         cin.tie(0)->sync_with_stdio(0);
         string s;
-        getline(cin,s);
+        cin >> s;
+        getline(cin >> ws,s);
 
-
-        //remove duplicates
+        
+        //vector
         sort(a.begin(), a.end());
         a.erase(unique(a.begin(), a.end()), a.end());
+
+        bool adv = next_permutation(a.begin(),a.end());
+
         
         //priority queue TODO
         //custom set comparator TODO
