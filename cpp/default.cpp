@@ -22,7 +22,19 @@ int main(){
         x = __builtin_clzll(y);
         x = __builtin_popcountll(y);
 
+        bitset<1000> b;
+        
+
         //input
         cin.tie(0)->sync_with_stdio(0);
+        string s;
+        getline(cin,s);
+
+
+        //remove duplicates
+        sort(a.begin(), a.end());
+        a.erase(unique(a.begin(), a.end()), a.end());
         
+        //priority queue TODO
+        //custom set comparator TODO
 }
