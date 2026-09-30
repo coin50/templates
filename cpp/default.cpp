@@ -23,6 +23,10 @@ int main(){
         x = __builtin_popcountll(y);
 
         bitset<1000> b;
+        b.set(); b.reset(); b.flip();
+        b.count(); b.any(); b.all(); b.none();
+
+        //how to do strings, __init128, next_permutation, bitset
         
 
         //input
