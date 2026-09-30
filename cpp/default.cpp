@@ -2,6 +2,27 @@
 using namespace std;
 #define rep(i,a,b) for(int i=(a);i<(b);i++)
 
+#pragma GCC optimize("O3,unroll-loops")
+#pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
+
 int main(){
-    cin.tie(0)->sync_with_stdio(0);
+        //random
+        mt19937 rng(time(0));
+        mt19937_64 rng64(time(0));
+        
+        vector<int> a;
+        shuffle(a.begin(),a.end(),rng);
+
+        uniform_real_distribution<> dist(0,1);
+        double r = dist(rng);
+
+        //bits
+        int x,y;
+        x = __builtin_ctz(y);
+        x = __builtin_clzll(y);
+        x = __builtin_popcountll(y);
+
+        //input
+        cin.tie(0)->sync_with_stdio(0);
+        
 }
