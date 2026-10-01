@@ -42,7 +42,7 @@ int main(){
         bool adv = next_permutation(a.begin(),a.end());
 
         
-        //custom comparator
+        //custom comparator (weak ordering)
         auto cmp = [&]( int x, int y ){ return x > y; };
         priority_queue<int,vector<int>,decltype(cmp)> pq(cmp);
         set<int,decltype(cmp)> s(cmp);
