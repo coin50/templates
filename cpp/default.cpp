@@ -42,6 +42,8 @@ int main(){
         bool adv = next_permutation(a.begin(),a.end());
 
         
-        //priority queue TODO
-        //custom set comparator TODO
+        //custom comparator
+        auto cmp = [&]( int x, int y ){ return x > y; };
+        priority_queue<int,vector<int>,decltype(cmp)> pq(cmp);
+        set<int,decltype(cmp)> s(cmp);
 }
