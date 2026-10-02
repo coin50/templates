@@ -10,32 +10,27 @@ int main(){
 		edges[u].push_back(v);
 	}
 	
-	vector<int> time(n,-1); int clk = 0;
-	vector<int> ci(n,-1); int cnum = 0;
-	vector<int> stack;
-
-	auto dfs = [&]( auto f, int u ) -> int {
+	int clk = 1, cnum = 0;
+        vector<int> time(n,0), ci(n,-1), stack;
+	auto dfs = [&]( auto&& dfs, int u ) -> int {
 		stack.push_back(u);
 		time[u] = clk++;
+
 		int mt = time[u];
-	
-		for( auto v: edges[u] ) if( ci[v] == -1 ){
-			if( -1 == time[v] ) mt = min(mt, f(f,v));
-			mt = min(mt,time[v]);
-		}
+		for( auto v: edges[u] ) if( ci[v] == -1 )
+                        mt = min(mt, time[v] ?: dfs(dfs,v));
 
 		if( mt == time[u] ){
-			while( stack.back() != u ){
-				ci[stack.back()] = cnum;
-				stack.pop_back();
-			}
-			stack.pop_back();
-			ci[u] = cnum++;
+                        int v;
+                        do{
+                                v = stack.back(); stack.pop_back();
+                                ci[v] = cnum;
+                        } while( v != u );
+			cnum++;
 		}
-
 		return mt;
 	};
-	rep(i,0,n) if( -1 == time[i] ){ dfs(dfs,i); }
+	rep(i,0,n) if( 0 == time[i] ){ dfs(dfs,i); }
 	
 	cout << cnum << endl;
 	vector<vector<int>> bins(cnum);
