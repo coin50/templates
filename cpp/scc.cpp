@@ -22,8 +22,7 @@ int main(){
 
 		if( mt == time[u] ){
                         int v;
-                        do{
-                                v = stack.back(); stack.pop_back();
+                        do{     v = stack.back(); stack.pop_back();
                                 ci[v] = cnum;
                         } while( v != u );
 			cnum++;
