@@ -109,7 +109,7 @@ struct MCMF{
                 rep(i,0,N) for( auto& e: edges[i] ) cost += e.cost * e.flow;
                 return {flow, cost/2};
         }
-		void setpi( int s ){
+	void setpi( int s ){
                 for( auto& e: pi ) e = INF;
                 pi[s] = 0;
 
