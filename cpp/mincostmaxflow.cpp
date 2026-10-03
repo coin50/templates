@@ -84,7 +84,7 @@ struct MCMF {
                         seen[s] = 1; di = dist[s] + pi[s];
                         for( auto& e: edges[s] ) if( 0 == seen[e.to] ){
                                 ll val = di - pi[e.to] + e.cost;
-                                if( e.cap - e.flow > 0 and val < dist[e.to] ){
+                                if( e.cap > e.flow and val < dist[e.to] ){
                                         dist[e.to] = val;
                                         par[e.to] = &e;
                                         q.push( {-dist[e.to],e.to} );
