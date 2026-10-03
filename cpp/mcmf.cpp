@@ -1,4 +1,4 @@
-struct MCMF {
+struct MCMF{
         const ll INF = LLONG_MAX / 4;
 	struct Edge{ int from, to, rev; ll cap, cost, flow; };
 
@@ -55,7 +55,7 @@ struct MCMF {
 };
 
 
-struct MCMF {
+struct MCMF{
         const ll INF = LLONG_MAX / 4;
 	struct Edge{ int from, to, rev; ll cap, cost, flow; };
  
@@ -108,5 +108,23 @@ struct MCMF {
                 }
                 rep(i,0,N) for( auto& e: edges[i] ) cost += e.cost * e.flow;
                 return {flow, cost/2};
+        }
+		void setpi( int s ){
+                for( auto& e: pi ) e = INF;
+                pi[s] = 0;
+
+                int it = N, ch = 1;
+                while( ch-- and it-- ){
+                        rep(i,0,N) if( pi[i] != INF ){
+                                for( auto& e: edges[i] ) if( e.cap ){
+                                        ll nd = pi[i] + e.cost;
+                                        if( nd < pi[e.to] ){
+                                                pi[e.to] = nd;
+                                                ch = 1;
+                                        }
+                                }
+                        }
+                }
+                assert(it >= 0);
         }
 };
