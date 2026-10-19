@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define rep(i,a,b) for(int i=(a);i<(b);i++)
+#define chmax(x,y) ((x)<(y)?((x)=(y),1):0)
 
 #pragma GCC optimize("O3,unroll-loops")
 #pragma GCC target("avx2,bmi,bmi2,lzcnt,popcnt")
