@@ -28,6 +28,7 @@ struct Hull{
 
         int t = 0;
         ll query( ll x ){
+                t = min(t, hull.size() - 1);
                 while( t+1 < hull.size() and bp(t) < x ) t++;
                 while( t > 0 and bp(t-1) >= x ) t--;
                 return hull[t].eval(x);
