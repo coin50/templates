@@ -2,6 +2,7 @@ const ll INF = LLONG_MAX;
 struct Line {
         ll a,b;
         ll eval( ll x ) const { return a*x + b; }
+        int operator<( const Line& o ) const { return tie(a,b) < tie(o.a,o.b); }
 };
 ll fdiv( ll a, ll b ){ return a/b - ((a^b)<0 && a%b); }
 ll breakpoint( Line a, Line b ){ return fdiv( a.b-b.b, b.a-a.a ); }
@@ -28,7 +29,7 @@ struct Hull{
 
         int t = 0;
         ll query( ll x ){
-                t = min(t, hull.size() - 1);
+                t = min(t,size()-1);
                 while( t+1 < hull.size() and bp(t) < x ) t++;
                 while( t > 0 and bp(t-1) >= x ) t--;
                 return hull[t].eval(x);
