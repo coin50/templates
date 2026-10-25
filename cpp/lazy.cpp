@@ -2,7 +2,6 @@ using TAG = pair<ll,ll>; //ax + b
 using T = pair<ll,int>; //sum, length
 const TAG defTAG = {1,0};
 const T defT = {0,0};
-T make( int x ){ return {x,1}; }
 T f( const T& a, const T& b ){ return {a.first+b.first,a.second+b.second}; }
 T eval( const TAG& t, const T& a ){ return {t.first*a.first + t.second*a.second,a.second}; }
 TAG comp( const TAG& f, const TAG& g ){ return {f.first*g.first,f.first*g.second+f.second}; }
