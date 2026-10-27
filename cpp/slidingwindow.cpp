@@ -1,20 +1,21 @@
-int I = INT_MAX;
-auto f = [&](int x,int y){ return min(x,y); };
+using T = ll;
+auto f = [&](ll x,ll y){ return max(x,y); };
+T defT = LLONG_MIN / 2;
 
-int racc = I;
-vector<int> front;
-vector<int> back = {I};
+T racc = defT;
+vector<T> front;
+vector<T> back = {defT};
 auto query = [&](){ return f(back.back(),racc); };
-auto push = [&](int x){ front.push_back(x); racc = f(racc,x); };
+auto push = [&](T x){ front.push_back(x); racc = f(racc,x); };
 auto pop = [&](){
         if( back.size() == 1 ){
-                int lacc = I;
+                T lacc = defT;
                 while( front.size() ){
-                        int v = front.back(); front.pop_back();
+                        T v = front.back(); front.pop_back();
                         lacc = f(v,lacc);
                         back.push_back(lacc);
                 }
-                racc = I;
+                racc = defT;
         }
         back.pop_back();
 };
